@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/css/style.css' %}">
+    <title>
+        {% block title %}
+            ADVITO
+        {% endblock title %}
+    </title>
+</head>
+<body class="page">
+{% block page %}
+    {% block header %}
+        {% include 'posts/header.html' %}
+    {% endblock header %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+        {% include 'posts/footer.html' %}
+    {% endblock footer %}
+{% endblock page %}
+</body>
+</html>

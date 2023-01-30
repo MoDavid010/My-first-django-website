@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post delete</title>
+</head>
+<body>
+    {% if post.author != user %}
+        <h1>Вы не можете удалить пост!</h1>
+    {% else %}
+        <h1>Вы уверены что хотите удалить пост?</h1>
+        <form method="post" action="{% url 'posts:post_delete' post.id %}">
+            {% csrf_token %}
+            <button type="submit">Удалить!!!!111</button>
+        </form>
+        <a href="{% url 'posts:post_detail' post.id %}">НЕТ</a>
+    {% endif %}
+</body>
+</html>

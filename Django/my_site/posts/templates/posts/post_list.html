@@ -1,0 +1,17 @@
+<div class="posts">
+    <ul class="posts__list">
+        {% for post in posts %}
+        <li class="posts__item">
+            <a href="{% url 'posts:post_detail' post.id %}">{{ post }}</a>
+            <p>Author: <a href="{% url 'core:profile' post.author.id %}">{{ post.author }}</a></p>
+            <p>Likes: {{ post.likes.count }}</p>
+            <p>Dislikes: {{ post.dislikes.count }}</p>
+            <form method="post" action="{% url 'posts:post_like' post.id %}">
+                {% csrf_token %}
+                <button type="submit">Like ♥</button>
+            </form>
+            <img class="post__image" src="{{ post.image_url }}">
+        </li>
+        {% endfor %}
+    </ul>
+</div>

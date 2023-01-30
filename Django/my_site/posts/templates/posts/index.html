@@ -1,0 +1,11 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+    Все посты
+{% endblock title %}
+
+{% block content %}
+    {% if posts %}
+        {% include 'posts/post_list.html' %}
+    {% endif %}
+{% endblock content %}

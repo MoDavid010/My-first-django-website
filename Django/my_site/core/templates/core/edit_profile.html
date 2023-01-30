@@ -1,0 +1,24 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+    Редактирование профиля {{ profile }}
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Редактирование профиля {{profile}}</h1>
+    <img src="{{profile.avatar.url}}" alt="avatar">
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Обновить данные</button>
+    </form>
+
+    <h2>Posts:</h2>
+
+{% with posts=profile.posts.all %}
+    {% include 'posts/post_list.html' %}
+{% endwith %}
+
+{% endblock content %}

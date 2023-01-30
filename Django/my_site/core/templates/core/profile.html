@@ -1,0 +1,33 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+    Страница пользователя {{ profile }}
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Страница пользователя {{ profile }}</h1>
+    <h2>{{profile.birth_date|date:"d F Y"}}</h2>
+    <h2>About:</h2>
+    <p>{{profile.about}}</p>
+    {% if user.id == profile.id %}
+    <a href="{% url 'core:profile_edit' profile.id %}">Редактировать</a>
+    {% else %}
+    <form action="{% url 'core:add_remove_friend' profile.id %}" method="post">
+        {% csrf_token %}
+        {% if profile in user.friends.all %}
+            <button type="submit">Удалить из друзей</button>
+        {% else %}
+            <button type="submit">Добавить в друзья</button>
+        {% endif %}
+    </form>
+    {% endif %}
+    <img src="{{profile.avatar.url}}" alt="avatar">
+    <h2>Posts:</h2>
+
+{% with posts=profile.posts.all %}
+    {% include 'posts/post_list.html' %}
+{% endwith %}
+
+{% endblock content %}
+

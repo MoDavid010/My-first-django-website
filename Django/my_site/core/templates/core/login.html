@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+  <H1>Страница входа</H1>
+<!--  <form method="post" action="{% url 'core:login' %}?next={% url 'posts:index' %}">-->
+  <form method="post" action="{% url 'core:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Войти</button>
+  </form>
+</body>
+</html>

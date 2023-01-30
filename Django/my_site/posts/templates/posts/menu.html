@@ -1,0 +1,13 @@
+<nav class="menu">
+  <ul>
+    <li><a href="{% url 'posts:index' %}">Главная страница</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'core:profile' user.id %}">Мои Обьявления</a></li>
+      <li><a href="{% url 'posts:post_create' %}">Создать объявление</a></li>
+      <li><a href="{% url 'core:logout' %}">Выйти</a></li>
+    {% else %}
+      <li><a href="{% url 'core:register' %}">Зарегистрироваться</a></li>
+      <li><a href="{% url 'core:login' %}">Войти</a></li>
+    {% endif %}
+  </ul>
+</nav>
